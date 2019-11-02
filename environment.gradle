@@ -1,0 +1,11 @@
+// File for the environment, or dev-specific changes that should not go into Git
+// If you need to change it, run the following command, so Git still tracks this file, but ignores any changes:
+//        git update-index --assume-unchanged environment.gradle
+//
+// An example of the local changes - your dev-specific repo:
+//    repositories {
+//        maven {
+//            url "https://my-maven-repo.my.organisation"
+//        }
+//    }
+//

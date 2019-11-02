@@ -1,0 +1,54 @@
+buildscript {
+    // Any environment or dev-specific change - put it into the environment.gradle file, marking it 
+    // 	as assume-unchanged by running "git update-index --assume-unchanged environment.gradle"
+    apply from: "environment.gradle"
+}
+
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'maven'
+}
+
+project.version = '1.0.0'
+
+defaultTasks 'clean', 'build'
+
+repositories {
+    // If you need to use an organisation-specific repo, put it into the environment.gradle file
+    jcenter()
+}
+
+def projectFileName = "${project.name}-${project.version}"
+
+jar {
+	archiveFileName = "${projectFileName}.jar"
+}
+
+task writePom {
+	doLast {
+		pom {
+		}.writeTo("$buildDir/libs/${projectFileName}.pom")
+	}
+}
+
+build.dependsOn(writePom)
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveClassifier.set('sources')
+	from sourceSets.main.allSource
+}
+
+artifacts {
+	archives sourcesJar
+}
+
+dependencies {
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+    implementation 'com.google.guava:guava:26.0-jre'
+    implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.1.17'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+    testImplementation "org.mockito:mockito-core:2.1.0"
+}

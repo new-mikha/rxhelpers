@@ -1,0 +1,6 @@
+rxhelpers
+Copyright 2019 Mikhail Karmazin
+
+This application uses the modified code from the RxJava library (https://github.com/ReactiveX/RxJava), with
+specific changes mentioned in the corresponding files. This library is available under the Apache 2.0 license,
+which can be obtained from http://www.apache.org/licenses/LICENSE-2.0.
