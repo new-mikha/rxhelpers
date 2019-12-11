@@ -1,14 +1,18 @@
 ## The library contains ReplayRemoveSubject - an addition to RxJava 2 ##
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.new-mikha/rxhelpers/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.new-mikha/rxhelpers)
+
 The subject works like a `ReplaySubject`, but it also allows to remove elements from the buffer so late observers do not see removed ones, and the buffer size can be limited manually.
 
 It can be useful in scenarios where e.g. a cold observable of an updatable database is required. Notice that the buffer is distinct (see details below)
 
 
 ### Installation ###
-Can be built by running `./gradlew` (`gradlew` on Windows) from the working directory. Result is a JAR file in build\libs directory, with POM and sources generated too, so it's easy to either use JAR directly or upload JAR's and POM to an organisation-specific repository first. 
+- Can be found in the [Maven Central, with groupId `io.github.new-mikha` and name `rxhelpers`](https://search.maven.org/artifact/io.github.new-mikha/rxhelpers)
 
-Or simply take the whole src/main/java/rxhelpers folder into your project - just don't forget to add a reference to your NOTICES file and keep the original license headers, in according to the Apache License used here.
+- Can be built from sources by running `./gradlew` (`gradlew` on Windows) from the working directory. Result is a JAR file in `build\libs` directory
+
+- Or simply take the whole `src/main/java/rxhelpers` directory into your project - just don't forget to add a reference to your NOTICES file and keep the original license headers, in according to the Apache License used here
 
 ### Usage ###
 The subject has a variety of methods to get combinations of snapshot, inserts, updates, and removal events, but in a simplest way it looks like this:
@@ -19,8 +23,8 @@ The subject has a variety of methods to get combinations of snapshot, inserts, u
     subject.onNext(2);
     subject.onNext(3);
     subject.subscribe(x -> System.out.println("SubscrA: " + x));
-    // So far it's the same as ReplaySubject: output above is 1, 2, 3
     System.out.println("(I) ----"); 
+    // So far it's the same as ReplaySubject: output above (I) is 1, 2, 3
 
     subject.onRemove(2); // onRemove() is a new method
     subject.subscribe(x -> System.out.println("SubscrB: " + x)); 

@@ -232,7 +232,8 @@ public class ReplayRemoveSubject<T> extends Subject<T> {
 
 
     /**
-     * A thread-safety note - this method and {@link ##onRemove} can be called simultaneously from different threads.
+     * A thread-safety note - this method and {@link #onRemove} can be called simultaneously from different threads.
+     * @param t
      */
     @Override
     public void onNext(T t) {
@@ -243,7 +244,8 @@ public class ReplayRemoveSubject<T> extends Subject<T> {
 
 
     /**
-     * A thread-safety note - this method and {@link ##onNext(T)} can be called simultaneously from different threads.
+     * A thread-safety note - this method and {@link #onNext} can be called simultaneously from different threads.
+     * @param t
      */
     @SuppressWarnings("unused")
     public void onRemove(T t) {

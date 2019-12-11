@@ -22,22 +22,23 @@ public class Demo {
 
     @Test
     public void mainUseCaseDemo() {
-
+        
         ReplayRemoveSubject<Integer> subject = ReplayRemoveSubject.create();
 
-        subject.subscribe(x -> System.out.println("SubscrA: " + x));
         subject.onNext(1);
         subject.onNext(2);
         subject.onNext(3);
-        // output: 1, 2, 3
+        subject.subscribe(x -> System.out.println("SubscrA: " + x));
         System.out.println("(I) ----");
+        // So far it's the same as ReplaySubject: output above (I) is 1, 2, 3
 
-        subject.onRemove(2);
-        subject.subscribe(x -> System.out.println("SubscrB: " + x)); // output: 1, 3
+        subject.onRemove(2); // onRemove() is a new method
+        subject.subscribe(x -> System.out.println("SubscrB: " + x));
         System.out.println("(II) ----");
+        // output between (I) and (II):   1, 3   (all from SubscrB)
 
         subject.onNext(4);
-        // output: 4, 4
+        // output after (II):   4, 4   (one from SubscrA, other from SubscrB)
     }
 
 
