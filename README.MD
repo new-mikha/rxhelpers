@@ -6,7 +6,7 @@ It can be useful in scenarios where e.g. a cold observable of an updatable datab
 
 
 ### Installation ###
-Currently there are no pre-built artifacts - it's just a Gradle project which can be built by running `./gradlew` (`gradlew` on Windows) from the working directory. Result is a JAR file in build\libs directory, with POM and sources generated too, so it's easy to either use JAR directly or upload JAR's and POM to an organisation-specific repository first. 
+Can be built by running `./gradlew` (`gradlew` on Windows) from the working directory. Result is a JAR file in build\libs directory, with POM and sources generated too, so it's easy to either use JAR directly or upload JAR's and POM to an organisation-specific repository first. 
 
 Or simply take the whole src/main/java/rxhelpers folder into your project - just don't forget to add a reference to your NOTICES file and keep the original license headers, in according to the Apache License used here.
 
